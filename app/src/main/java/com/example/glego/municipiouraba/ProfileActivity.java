@@ -1,16 +1,25 @@
 package com.example.glego.municipiouraba;
 
-import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.TextView;
 
-/**
- * Created by practi13 on 27/02/17.
- */
+public class ProfileActivity extends AppCompatActivity {
 
-public class ProfileActivity extends AppCompatActivity{
+    private TextView usernameTextView;
+    private TextView emailTextView;
+
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_profile);
+
+        usernameTextView = (TextView) findViewById(R.id.username);
+        emailTextView = (TextView) findViewById(R.id.email);
+
+        Bundle extras = getIntent().getExtras();
+
+        usernameTextView.setText(extras.getString("username"));
+        emailTextView.setText(extras.getString("email"));
     }
 }

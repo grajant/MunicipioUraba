@@ -10,11 +10,16 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    private String username;
+    private String email;
+    private Bundle extras;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toast.makeText(this, "Hola", Toast.LENGTH_SHORT).show();
+
+        extras = getIntent().getExtras();
     }
 
     @Override
@@ -29,9 +34,14 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.menu_profile:
                 intent = new Intent(MainActivity.this, ProfileActivity.class);
+                intent.putExtra("username", extras.getString("username"));
+                intent.putExtra("email", extras.getString("email"));
                 startActivity(intent);
                 break;
             case R.id.logout_menu:
+                intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
                 break;
         }
         return true;
